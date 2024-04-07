@@ -37,6 +37,13 @@ if image_file is not None:
     x = np.expand_dims(img_array, axis=0)
     images = np.vstack([x])
     model=get_best_model()
+
+    # img = image.img_to_array(img)
+    # img = np.expand_dims(img,axis=0)
+    # predict_x=model.predict(img) 
+    # classes_x=np.argmax(predict_x,axis=1)
+
+    
     classes = model.predict(images, batch_size=10)
     if classes>0.5:
         prediction = 'Normal'
