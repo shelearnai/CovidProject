@@ -4,4 +4,5 @@ tensorflow-cpu
 numpy
 pytest-shutil
 scikit-learn
-tensorflow
+tensorflow==2.15.0
+keras
