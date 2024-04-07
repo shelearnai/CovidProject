@@ -25,7 +25,6 @@ st.subheader('Classify the image')
 image_file = st.file_uploader('Choose the Image', ['jpg', 'png'])
 print(image_file)
 
-
 if image_file is not None:
 
     import numpy as np
@@ -36,21 +35,10 @@ if image_file is not None:
     xtest_image = image.load_img(image_file, target_size = (224, 224))
     xtest_image = image.img_to_array(xtest_image)
     xtest_image = np.expand_dims(xtest_image, axis = 0)
+    model=get_best_model()
     #results = model.predict_classes(xtest_image)
     predict_x=model.predict(xtest_image) 
     results=predict_x
-    
-    
-    # training_set.class_indices
-    
-    imggg = cv2.imread('dataset/covid/Prediction/NORMAL2-IM-0354-0001.jpeg')
-    print("This Xray Image is of Negative covid-19 patient")
-    imggg = np.array(imggg)
-    imggg = cv2.resize(imggg,(400,400))
-    
-    plt.imshow(imggg)
-    # cv2_imshow(imggg)
-    print(results)
     if results == 0:
         prediction = 'Positive For Covid-19'
     else:
