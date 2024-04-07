@@ -27,26 +27,58 @@ print(image_file)
 
 
 if image_file is not None:
-    
-    image = Image.open(image_file)
-    st.image(image, caption='Input Image')
 
-    image = image.resize((224,224),Image.ANTIALIAS)
-    img_array = np.array(image)
+    import numpy as np
+    import keras.utils as image
+    # image = Image.open(image_file)
+    #xtest_image = image.load_img('Dataset/Prediction/NORMAL2-IM-0354-0001.jpeg', target_size = (224, 224))
+    #SARS-10.1148rg.242035193-g04mr34g05x-Fig5-day9
+    xtest_image = image.load_img(image_file, target_size = (224, 224))
+    xtest_image = image.img_to_array(xtest_image)
+    xtest_image = np.expand_dims(xtest_image, axis = 0)
+    #results = model.predict_classes(xtest_image)
+    predict_x=model.predict(xtest_image) 
+    results=predict_x
     
-    x = np.expand_dims(img_array, axis=0)
-    images = np.vstack([x])
-    model=get_best_model()
-
-    # img = image.img_to_array(img)
-    # img = np.expand_dims(img,axis=0)
-    # predict_x=model.predict(img) 
-    # classes_x=np.argmax(predict_x,axis=1)
-
     
-    classes = model.predict(images, batch_size=10)
-    if classes>0.5:
-        prediction = 'Normal'
+    # training_set.class_indices
+    
+    imggg = cv2.imread('dataset/covid/Prediction/NORMAL2-IM-0354-0001.jpeg')
+    print("This Xray Image is of Negative covid-19 patient")
+    imggg = np.array(imggg)
+    imggg = cv2.resize(imggg,(400,400))
+    
+    plt.imshow(imggg)
+    # cv2_imshow(imggg)
+    print(results)
+    if results == 0:
+        prediction = 'Positive For Covid-19'
     else:
-        prediction = 'Covid'
+        prediction = 'Negative for Covid-19'
+    print("Prediction Of Our Model : ",prediction)
     st.write(f'The image is predicted as {prediction}')
+
+
+    
+    # image = Image.open(image_file)
+    # st.image(image, caption='Input Image')
+
+    # image = image.resize((224,224),Image.ANTIALIAS)
+    # img_array = np.array(image)
+    
+    # x = np.expand_dims(img_array, axis=0)
+    # images = np.vstack([x])
+    # model=get_best_model()
+
+    # # img = image.img_to_array(img)
+    # # img = np.expand_dims(img,axis=0)
+    # # predict_x=model.predict(img) 
+    # # classes_x=np.argmax(predict_x,axis=1)
+
+    
+    # classes = model.predict(images, batch_size=10)
+    # if classes>0.5:
+    #     prediction = 'Normal'
+    # else:
+    #     prediction = 'Covid'
+    # st.write(f'The image is predicted as {prediction}')
