@@ -24,7 +24,7 @@ def get_best_model():
 st.subheader('Classify the image')
 image_file = st.file_uploader('Choose the Image', ['jpg', 'png'])
 print(image_file)
-st.image(image_file, caption='Chest MRI Image')
+st.image(image_file, caption='Chest MRI Image', use_column_width=True)
 
 if image_file is not None:
 
@@ -45,7 +45,7 @@ if image_file is not None:
     else:
         prediction = 'Negative for Covid-19'
     print("Prediction Of Our Model : ",prediction)
-    st.write(f'<h1>The image is predicted as {prediction}.</h1>')
+    st.markdown(f'<h1>The image is predicted as {prediction}.</h1>', unsafe_allow_html=True)
 
 
     
