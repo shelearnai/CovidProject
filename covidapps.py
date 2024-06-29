@@ -45,7 +45,7 @@ if image_file is not None:
     else:
         prediction = 'Negative for Covid-19'
     print("Prediction Of Our Model : ",prediction)
-    st.markdown(f'<h1>The image is predicted as {prediction}.</h1>', unsafe_allow_html=True)
+    st.markdown(f'<h3>The image is predicted as {prediction}.</h3>', unsafe_allow_html=True)
 
 
     
