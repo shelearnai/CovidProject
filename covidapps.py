@@ -45,7 +45,7 @@ if image_file is not None:
     else:
         prediction = 'Negative for Covid-19'
     print("Prediction Of Our Model : ",prediction)
-    st.write(f'The image is predicted as {prediction}')
+    st.write(f'<h1>The image is predicted as {prediction}.</h1>')
 
 
     
