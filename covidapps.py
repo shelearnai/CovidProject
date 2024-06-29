@@ -24,6 +24,7 @@ def get_best_model():
 st.subheader('Classify the image')
 image_file = st.file_uploader('Choose the Image', ['jpg', 'png'])
 print(image_file)
+st.image(image_file, caption='Chest MRI Image')
 
 if image_file is not None:
 
